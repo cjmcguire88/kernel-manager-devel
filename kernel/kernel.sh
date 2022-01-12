@@ -58,9 +58,9 @@ main() {
 # operations, this function ensures that it has root privileges
 # Then it checks if the config file exists before proceeding to
 # main.
-#if [ "$EUID" -ne 0 ]; then
-#    exoe "Must be run as root"
-if [[ ! -f $HOME/.config/kernel/kernel.conf ]]; then
+if [ "$EUID" -eq 0 ]; then
+    exoe "Do not run as root"
+elif [[ ! -f $HOME/.config/kernel/kernel.conf ]]; then
     exoe "Can't find configuration file."
 else
     main "$@"
