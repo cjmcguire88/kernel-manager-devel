@@ -1,5 +1,27 @@
 #!/usr/bin/env bash
 
+#================================================================
+# HEADER
+#================================================================
+#% SYNOPSIS
+#+    kernel [-i] args ...
+#%
+#% DESCRIPTION
+#%
+#% OPTIONS
+#% Recieves kernel version as a parameter $1.
+#%
+#================================================================
+#- IMPLEMENTATION
+#-    version         custom-kernel-manager 1.0
+#-    author          Jason McGuire
+#-    copyright       None
+#-    license         MIT
+#-
+#================================================================
+# END_OF_HEADER
+#================================================================
+
 VERS="$1"
 MAJ_VER="${1:0:1}"
 

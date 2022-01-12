@@ -1,5 +1,28 @@
 #!/usr/bin/env bash
 
+#================================================================
+# HEADER
+#================================================================
+#% SYNOPSIS
+#+    kernel (main)
+#%
+#% DESCRIPTION
+#%
+#% OPTIONS
+#% -[d i b m r a c p u n h] OPTARGS ...
+#% Receives flags and optional arguments depending on flag.
+#%
+#================================================================
+#- IMPLEMENTATION
+#-    version         custom-kernel-manager 1.0
+#-    author          Jason McGuire
+#-    copyright       None
+#-    license         MIT
+#-
+#================================================================
+# END_OF_HEADER
+#================================================================
+
 exoe() {
     echo -e "\033[1;31m${1}\033[0m" >&2
     exit 1

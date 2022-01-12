@@ -1,5 +1,27 @@
 #!/usr/bin/env bash
 
+#================================================================
+# HEADER
+#================================================================
+#% SYNOPSIS
+#+    kernel [-d] args ...
+#%
+#% DESCRIPTION
+#%
+#% OPTIONS
+#% Recieves kernel version as a parameter $1.
+#%
+#================================================================
+#- IMPLEMENTATION
+#-    version         custom-kernel-manager 1.0
+#-    author          Jason McGuire
+#-    copyright       None
+#-    license         MIT
+#-
+#================================================================
+# END_OF_HEADER
+#================================================================
+
 echo -e "\n\033[1;37mDownloading linux-${VERS}\033[0m"
 VER=${1}
 MAJOR="$(echo ${VER} | cut -d. -f1)"

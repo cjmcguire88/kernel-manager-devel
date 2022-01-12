@@ -1,5 +1,27 @@
 #!/usr/bin/env bash
 
+#================================================================
+# HEADER
+#================================================================
+#% SYNOPSIS
+#+    kernel [-m] args ...
+#%
+#% DESCRIPTION
+#%
+#% OPTIONS
+#% Recieves kernel version-name as a parameter $1.
+#%
+#================================================================
+#- IMPLEMENTATION
+#-    version         custom-kernel-manager 1.0
+#-    author          Jason McGuire
+#-    copyright       None
+#-    license         MIT
+#-
+#================================================================
+# END_OF_HEADER
+#================================================================
+
 [[ "$1" =~ $(uname -r) ]] && exoe "${1} is the currently running kernel"
 cp -rv "$SRC_DIR"/linux-"$1" "$BUILD_DIR"/
 cd "$BUILD_DIR"/linux-"${1}" || exoe "${1} not found"

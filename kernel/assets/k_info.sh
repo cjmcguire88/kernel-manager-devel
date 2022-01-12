@@ -1,5 +1,26 @@
 #!/usr/bin/env bash
 
+#================================================================
+# HEADER
+#================================================================
+#% SYNOPSIS
+#+    kernel
+#%
+#% DESCRIPTION
+#%
+#% OPTIONS
+#%
+#================================================================
+#- IMPLEMENTATION
+#-    version         custom-kernel-manager 1.0
+#-    author          Jason McGuire
+#-    copyright       None
+#-    license         MIT
+#-
+#================================================================
+# END_OF_HEADER
+#================================================================
+
 M_TIME=$(stat "$SRC_DIR"/linux-"$(uname -r)"/arch/x86_64/boot/bzImage | grep Modify: | awk -F " " '{print $2}')
 KERNELS=$(ls "$KERNEL_DIR"/vmlinuz-linux*)
 BACKUPS=$(ls "$SRC_DIR"/backups/*.tar.gz)

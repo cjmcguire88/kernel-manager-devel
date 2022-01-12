@@ -1,5 +1,27 @@
 #!/usr/bin/env bash
 
+#================================================================
+# HEADER
+#================================================================
+#% SYNOPSIS
+#+    kernel [-c] args ...
+#%
+#% DESCRIPTION
+#%
+#% OPTIONS
+#% Recieves kernel version as a parameter $1.
+#%
+#================================================================
+#- IMPLEMENTATION
+#-    version         custom-kernel-manager 1.0
+#-    author          Jason McGuire
+#-    copyright       None
+#-    license         MIT
+#-
+#================================================================
+# END_OF_HEADER
+#================================================================
+
 MAJ_VER="${1:0:1}"
 [[ "$1" =~ ^[0-9]+\.[0-9]+\.?[0-9]*$ ]] || exoe "Not a valid kernel version"
 echo -e "\n\033[1;37mRetrieving linux-${1} Changelog\033[0m"

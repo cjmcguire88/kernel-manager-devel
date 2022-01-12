@@ -1,5 +1,26 @@
 #!/usr/bin/env bash
 
+#================================================================
+# HEADER
+#================================================================
+#% SYNOPSIS
+#+    kernel [-h]
+#%
+#% DESCRIPTION
+#%
+#% OPTIONS
+#%
+#================================================================
+#- IMPLEMENTATION
+#-    version         custom-kernel-manager 1.0
+#-    author          Jason McGuire
+#-    copyright       None
+#-    license         MIT
+#-
+#================================================================
+# END_OF_HEADER
+#================================================================
+
 echo -e "Usage: kernel [-flag] [OPTIONAL_ARG]"
 echo -e "Author: Jason McGuire"
 echo -e "Custom kernel maintenance.\n"

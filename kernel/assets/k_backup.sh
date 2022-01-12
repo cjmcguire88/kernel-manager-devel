@@ -1,5 +1,27 @@
 #!/usr/bin/env bash
 
+#================================================================
+# HEADER
+#================================================================
+#% SYNOPSIS
+#+    kernel [-b] args ...
+#%
+#% DESCRIPTION
+#%
+#% OPTIONS
+#% Recieves kernel version as a parameter $1.
+#%
+#================================================================
+#- IMPLEMENTATION
+#-    version         custom-kernel-manager 1.0
+#-    author          Jason McGuire
+#-    copyright       None
+#-    license         MIT
+#-
+#================================================================
+# END_OF_HEADER
+#================================================================
+
 exoe() {
     echo -e "\033[1;31m${1}\033[0m" >&2
     exit 1

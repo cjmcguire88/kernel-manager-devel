@@ -1,5 +1,26 @@
 #!/usr/bin/env bash
 
+#================================================================
+# HEADER
+#================================================================
+#% SYNOPSIS
+#+    kernel [-n]
+#%
+#% DESCRIPTION
+#%
+#% OPTIONS
+#%
+#================================================================
+#- IMPLEMENTATION
+#-    version         custom-kernel-manager 1.0
+#-    author          Jason McGuire
+#-    copyright       None
+#-    license         MIT
+#-
+#================================================================
+# END_OF_HEADER
+#================================================================
+
 case $DOWNLOADER in
     1)
         wget -P "$RUN_DIR" "$PROTO"://www.kernel.org/finger_banner > /dev/null 2>&1

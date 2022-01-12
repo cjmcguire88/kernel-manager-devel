@@ -1,5 +1,28 @@
 #!/usr/bin/env bash
 
+#================================================================
+# HEADER
+#================================================================
+#% SYNOPSIS
+#+    Not called directly.
+#%
+#% DESCRIPTION
+#%
+#% OPTIONS
+#% Recieves kernel version as a parameter $1.
+#% Recieves $BUILD_DIR as a parameter $2.
+#%
+#================================================================
+#- IMPLEMENTATION
+#-    version         custom-kernel-manager 1.0
+#-    author          Jason McGuire
+#-    copyright       None
+#-    license         MIT
+#-
+#================================================================
+# END_OF_HEADER
+#================================================================
+
 exoe() {
     echo -e "\033[1;31m${1}\033[0m" >&2
     if ((${#K_FILES[@]})); then

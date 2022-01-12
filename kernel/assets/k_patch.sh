@@ -1,5 +1,26 @@
 #!/usr/bin/env bash
 
+#================================================================
+# HEADER
+#================================================================
+#% SYNOPSIS
+#+    kernel [-p]
+#%
+#% DESCRIPTION
+#%
+#% OPTIONS
+#%
+#================================================================
+#- IMPLEMENTATION
+#-    version         custom-kernel-manager 1.0
+#-    author          Jason McGuire
+#-    copyright       None
+#-    license         MIT
+#-
+#================================================================
+# END_OF_HEADER
+#================================================================
+
 echo -e "\n\033[1;37mRetrieving patches\033[0m"
 mkdir patches
 cd patches || exoe "patches directory missing"
