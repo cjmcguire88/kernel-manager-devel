@@ -7,6 +7,12 @@
 #+    kernel [-d] args ...
 #%
 #% DESCRIPTION
+#% This script is called by the [-d] flag and other functions in
+#% order to download the kernel version passed to it. It is a
+#% modified version of the script provided by kernel.org. It will
+#% get the Linux kernel tarball and cryptographically verify it,
+#% retrieving the PGP keys using the Web Key Directory (WKD)
+#% protocol if they are not already in the keyring.
 #%
 #% OPTIONS
 #% Recieves kernel version as a parameter $1.

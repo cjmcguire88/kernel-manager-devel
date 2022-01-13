@@ -7,6 +7,18 @@
 #+    kernel [-i] args ...
 #%
 #% DESCRIPTION
+#% This script is called by the [-i] flag and other functions to
+#% prepare and compile the kernel source. It first calls
+#% k_download to download the kernel source it then decompresses
+#% the kernel tarball and allows you to specify a name for the
+#% kernel. It then checks for $HOME/.config/kernel/patches
+#% containing patches. If they are not present it checks for
+#% $HOME/.config/kernel/patchfile and calls k_patch to download
+#% patches in the file if present. Then it will delete the line
+#% from init/Kconfig that conceals the option for -o3 optimization.
+#% It will then proceed to generate the config file through the
+#% method selected. Finally, it compiles the kernel then passes
+#% it to k_install for installation.
 #%
 #% OPTIONS
 #% Recieves kernel version as a parameter $1.
@@ -56,7 +68,11 @@ case ${REPLY:-Y} in
             cp -rv "$PATCH_DIR"/patches "$BUILD_DIR"/linux-"${MVERS}-$NAME"/
             echo
         else
-            source $k_path/assets/k_patch.sh || exoe "Failed to retrieve patches"
+            if [[ -f $HOME/.config/kernel/patchfile ]]; then
+                source $k_path/assets/k_patch.sh || exoe "Failed to retrieve patches"
+            else
+                exoe "No patchfile found"
+            fi
         fi
         echo -e "\n\033[1;37mPatching Kernel\033[0m"
         for i in patches/*; do

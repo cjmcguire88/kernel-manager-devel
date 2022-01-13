@@ -7,9 +7,16 @@
 #+    kernel [-m] args ...
 #%
 #% DESCRIPTION
+#% This script is called by the [-m] flag. It requires root
+#% privilege. It allows the modification to the config of an
+#% already installed kernel. It will open the config menu,
+#% then check if any edits were made and if so it will create
+#% a .diff file in the config directory of changes that were
+#% made. Then it will recompile the kernel and pass it to
+#% k_install for reinstallation.
 #%
 #% OPTIONS
-#% Recieves kernel version-name as a parameter $1.
+#% Receives kernel version-name as a parameter $1.
 #%
 #================================================================
 #- IMPLEMENTATION

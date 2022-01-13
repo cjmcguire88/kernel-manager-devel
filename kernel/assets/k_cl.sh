@@ -7,6 +7,11 @@
 #+    kernel [-c] args ...
 #%
 #% DESCRIPTION
+#% This script is called by the [-c] flag and other scripts when
+#% installing a new kernel. It downloads the changelog for the
+#% version passed to it using the $DOWNLOADER specified in
+#% kernel.conf. It then displays the changelog using the
+#% $CL_VIEWER program specified in kernel.conf.
 #%
 #% OPTIONS
 #% Recieves kernel version as a parameter $1.

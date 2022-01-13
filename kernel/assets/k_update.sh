@@ -7,6 +7,12 @@
 #+    kernel [-u]
 #%
 #% DESCRIPTION
+#% This script is called by the [-u] flag and downloads the
+#% finger_banner from kernel.org and compares the latest stable
+#% version with the version obtained from uname -r. If the newest
+#% stable is newer than the currently installed version it will
+#% allow you to update to the newer kernel by passing the new
+#% version to k_prepare for download and installation.
 #%
 #% OPTIONS
 #%

@@ -7,6 +7,9 @@
 #+    kernel
 #%
 #% DESCRIPTION
+#% This script is called when no flags are passed to the program
+#% and it will print out various info about installed kernels and
+#% backups.
 #%
 #% OPTIONS
 #%

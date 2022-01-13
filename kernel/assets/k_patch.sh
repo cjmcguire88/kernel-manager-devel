@@ -7,6 +7,10 @@
 #+    kernel [-p]
 #%
 #% DESCRIPTION
+#% This script is called by the [-p] flag and other functions.
+#% It creates a patches directory in the path it is called from
+#% and then downloads any patches from links listed in $HOME/
+#% .config/kernel/patchfile to the patches directory.
 #%
 #% OPTIONS
 #%

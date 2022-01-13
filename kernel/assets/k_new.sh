@@ -7,6 +7,11 @@
 #+    kernel [-n]
 #%
 #% DESCRIPTION
+#% This script is called by the [-n] flag. It retrieves the
+#% finger_banner from kernel.org and parses it for the newest
+#% kernel versions. It will list them in a menu and once a choice
+#% is made it will pass the version chosen to K_prepare for
+#% for compilation.
 #%
 #% OPTIONS
 #%

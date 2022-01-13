@@ -7,6 +7,11 @@
 #+    kernel [-r] args ...
 #%
 #% DESCRIPTION
+#% This script is called by the [-r] flag. It firsts prompts if
+#% a backup should be made. Then it will check in the usual
+#% directories for any files relating to the kernel name passed
+#% to it. It will then list the files it found and prompt if
+#% they should be deleted.
 #%
 #% OPTIONS
 #% Recieves kernel version-name as a parameter $1.

@@ -7,6 +7,8 @@
 #+    kernel [-h]
 #%
 #% DESCRIPTION
+#% This script is called by the [-h] flag and displays a help
+#% menu with a list of options.
 #%
 #% OPTIONS
 #%

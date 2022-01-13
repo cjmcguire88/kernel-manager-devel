@@ -7,6 +7,10 @@
 #+    kernel [-a] args ...
 #%
 #% DESCRIPTION
+#% This script is called by the [-a] flag and allows restoration
+#% of a backup made by k_backup. It simply untars the source
+#% directory to $SRC_DIR and passes it to k_install for
+#% reinstallation.
 #%
 #% OPTIONS
 #% Recieves kernel version-name as a parameter $1.

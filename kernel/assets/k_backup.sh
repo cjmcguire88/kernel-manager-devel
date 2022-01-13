@@ -7,6 +7,11 @@
 #+    kernel [-b] args ...
 #%
 #% DESCRIPTION
+#% This script is called by either the [-b] flag or by another
+#% script that modifies the kernel. It is always called as root
+#% as it operates in a directory that requires root privilege.
+#% It creates a .tar.gz archive of the source directory for the
+#% version passed to it in the $SRC_DIR/backups folder.
 #%
 #% OPTIONS
 #% Recieves kernel version as a parameter $1.
