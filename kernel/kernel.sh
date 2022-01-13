@@ -7,6 +7,12 @@
 #+    kernel (main)
 #%
 #% DESCRIPTION
+#% This script can be considered the main "portal" to the
+#% program. It first ensures it wasn't called as root then
+#% ensures that the config file is present before proceeding
+#% to main. Then it will parse any flags and call the
+#% appropriate scripts or call k_info.sh if no flags are 
+#% present.
 #%
 #% OPTIONS
 #% -[d i b m r a c p u n h] OPTARGS ...
@@ -27,7 +33,6 @@ exoe() {
     echo -e "\033[1;31m${1}\033[0m" >&2
     exit 1
 }
-
 k_path="$(dirname $(realpath $0 ))"
 # This is the "main portal" to the above functions.
 main() {
@@ -77,10 +82,6 @@ main() {
     done
     source $k_path/assets/k_info.sh
 }
-# Since this script requires root privileges for most of its
-# operations, this function ensures that it has root privileges
-# Then it checks if the config file exists before proceeding to
-# main.
 if [ "$EUID" -eq 0 ]; then
     exoe "Do not run as root"
 elif [[ ! -f $HOME/.config/kernel/kernel.conf ]]; then
