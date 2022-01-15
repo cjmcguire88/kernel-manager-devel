@@ -32,7 +32,7 @@ exoe() {
     exit 1
 }
 
-source /home/$SUDO_USER/.config/kernel/kernel.conf
+source /home/"$SUDO_USER"/.config/kernel/kernel.conf
 
 [[ ! -d $SRC_DIR/backups ]] && mkdir "$SRC_DIR"/backups
 [[ -f $SRC_DIR/backups/${1}.tar.gz ]] && exoe "Archive already exists"

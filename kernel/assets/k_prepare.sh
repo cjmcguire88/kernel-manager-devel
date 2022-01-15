@@ -47,7 +47,7 @@ cd "$BUILD_DIR" || exoe "$BUILD_DIR not found"
 if [[ -f $BUILD_DIR/linux-${VERS}.tar.xz ]]; then
     echo -e "\n\033[1;37mlinux-${VERS}.tar.xz already exists. Skipping download.\033[0m\n"
 else
-    source $k_path/assets/k_download.sh "$VERS"
+    source "$k_path"/assets/k_download.sh "$VERS"
 fi
 echo -e "\033[1;37mUnpacking tarball\033[0m"
 tar -xJf linux-"${VERS}".tar.xz
@@ -69,7 +69,7 @@ case ${REPLY:-Y} in
             echo
         else
             if [[ -f $HOME/.config/kernel/patchfile ]]; then
-                source $k_path/assets/k_patch.sh || exoe "Failed to retrieve patches"
+                source "$k_path"/assets/k_patch.sh || exoe "Failed to retrieve patches"
             else
                 exoe "No patchfile found"
             fi
@@ -101,8 +101,8 @@ case ${REPLY:-Y} in
             make "$KERNEL_MENU"
             newSum=$(md5sum .config)
             if [[ $oldSum != "$newSum" ]]; then
-                [[ ! -d $HOME/.config/kernel/configs/"$(date +"%Y-%m-%d")" ]] && mkdir -p $HOME/.config/kernel/configs/"$(date +"%Y-%m-%d")"
-                diff .config.old .config > $HOME/.config/kernel/configs/"$(date +"%Y-%m-%d")"/"${1}-$(date | awk '{print $4}')".diff
+                [[ ! -d "$HOME"/.config/kernel/configs/"$(date +"%Y-%m-%d")" ]] && mkdir -p "$HOME"/.config/kernel/configs/"$(date +"%Y-%m-%d")"
+                diff .config.old .config > "$HOME"/.config/kernel/configs/"$(date +"%Y-%m-%d")"/"${1}-$(date | awk '{print $4}')".diff
             fi
         fi
         ;;
@@ -125,4 +125,4 @@ case ${REPLY:-Y} in
 esac
 echo -e "\033[1;37mCompiling ${1}\033[0m"
 make -j$(($(nproc) - $(nproc) / 4)) || exoe "Compilation failed"
-sudo -i $k_path/assets/k_install.sh "${MVERS}-${NAME}" "$BUILD_DIR"
+sudo -i "$k_path"/assets/k_install.sh "${MVERS}-${NAME}" "$BUILD_DIR"

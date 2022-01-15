@@ -32,7 +32,7 @@ exoe() {
     exit 1
 }
 
-source /home/$SUDO_USER/.config/kernel/kernel.conf
+source /home/"$SUDO_USER"/.config/kernel/kernel.conf
 k_path="$(dirname $(realpath $0 ))"
 
 [[ "$1" =~ ^[0-9]+?\.{1}[0-9]+?\.{1}[0-9]+?-??[0-9a-zA-Z\-]*?$ ]] || exoe "Not a valid kernel version"
@@ -41,7 +41,7 @@ if [[ -d /usr/src/linux-${1} ]] && [[ ! -f $SRC_DIR/backups/${1}.tar.gz ]]; then
     read -n 1 -p $'\033[1;37mCreate backup of kernel source? \033[0m[y/N]: ' REPLY
     case ${REPLY:-N} in
         [yY])
-            source $k_path/k_backup.sh "${1}"
+            source "$k_path"/k_backup.sh "${1}"
             ;;
         *)
             echo -e "\nSkipping backup. (\033[1;31mKernel files will not be recoverable after deletion!\033[0m)"
@@ -59,7 +59,7 @@ for file in "$SRC_DIR"/*"${1}"*; do
     echo -e "$SRC_DIR/\033[0;31m$(cut -d "/" -f4- <<< "$file")\033[0m"
     rmf+=( "$file" )
 done
-for file in /usr/lib/modules/*${1}*; do
+for file in /usr/lib/modules/*"${1}"*; do
     [[ -e $file ]] || continue
     echo -e "/usr/lib/modules/\033[0;31m$(cut -d "/" -f5- <<< "$file")\033[0m"
     rmf+=( "$file" )

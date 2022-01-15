@@ -63,7 +63,7 @@ if isUpdate "$MVERS" "$CURRENT_VERS"; then
     read -t 10 -n 1 -p $'\033[1;37mView kernel changelog? \033[0m[y/N]: ' REPLY
     case ${REPLY:-N} in
         [yY])
-            source $k_path/assets/k_cl.sh "$VERS"
+            source "$k_path"/assets/k_cl.sh "$VERS"
             ;;
         *)
             echo -e "\nskipping"
@@ -74,7 +74,7 @@ if isUpdate "$MVERS" "$CURRENT_VERS"; then
     if [[ ! $REPLY =~ ^[Yy]$ ]]; then
         exit
     fi
-    source $k_path/assets/k_prepare.sh "$VERS"
+    source "$k_path"/assets/k_prepare.sh "$VERS"
     if [[ -f $SRC_DIR/linux-$VERS.tar.xz ]]; then
         echo -e "\n\033[1;37mCleaning up\033[0m\n"
         rm -rf "$SRC_DIR"/linux-"${VERS}".tar.xz

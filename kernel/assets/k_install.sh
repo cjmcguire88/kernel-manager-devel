@@ -43,11 +43,11 @@ exoe() {
     exit 1
 }
 
-source /home/$SUDO_USER/.config/kernel/kernel.conf
+source /home/"$SUDO_USER"/.config/kernel/kernel.conf
 
-echo -e "\033[1;37mInstalling linux-"$1"\033[0m"
+echo -e "\033[1;37mInstalling linux-$1\033[0m"
 cp -rv "${2}"/linux-"${1}" "$SRC_DIR"/ || exoe "Cannot find ${2}/linux-${1}"
-cd "$SRC_DIR"/linux-"${1}"
+cd "$SRC_DIR"/linux-"${1}" || exoe "Can't find $SRC_DIR/linux-$1"
 K_FILES+=( "$SRC_DIR/linux-${1}" )
 cp -v "$SRC_DIR"/linux-"${1}"/arch/x86_64/boot/bzImage "$KERNEL_DIR"/vmlinuz-linux-"${1}"
 K_FILES+=( "$KERNEL_DIR/vmlinuz-linux-${1}" )
