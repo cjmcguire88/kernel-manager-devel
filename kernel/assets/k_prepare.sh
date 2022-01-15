@@ -37,7 +37,7 @@
 VERS="$1"
 MAJ_VER="${1:0:1}"
 
-if [[ $(echo "${VERS}" | awk -F "." '{print NF}') -lt 3 ]]; then
+if [[ $(awk -F "." '{print NF}' <<< "$VERS") -lt 3 ]]; then
     MVERS=${VERS}.0
 else
     MVERS=${VERS}

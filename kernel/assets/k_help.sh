@@ -23,17 +23,30 @@
 # END_OF_HEADER
 #================================================================
 
-echo -e "Usage: kernel [-flag] [OPTIONAL_ARG]"
-echo -e "Author: Jason McGuire"
-echo -e "Custom kernel maintenance.\n"
-echo -e "-d   Downloads specified kernel version to $SRC_DIR (Requires kernel version as argument.)"
-echo -e "-i   Download, compile and install the kernel version passed as an argument."
-echo -e "-b   Create a .tar.gz archive of the kernel source directory. (Requires kernel version as argument.)"
-echo -e "-m   Modify kernel config and optionally recompile and install kernel (Requires kernel version as argument.)"
-echo -e "-r   Remove a kernel from system. (Requires kernel version as argument.)"
-echo -e "-a   Restore a kernel that was previously archived. (Requires kernel version as argument.)"
-echo -e "-c   View the kernel changelog for the version passed as an argument."
-echo -e "-p   Dump a directory containing the patches listed in patchfile given (used for testing)."
-echo -e "-u   Update the current kernel to the latest stable on kernel.org."
-echo -e "-n   Create a new kernel. Choose between stable and LTS."
-echo -e "-h   Show this dialogue."
+cat <<EOF
+Usage: kernel [-flag] [OPTIONAL_ARG]
+Author: Jason McGuire
+Custom kernel maintenance.
+
+-d)   Downloads specified kernel version to $BUILD_DIR (Requires kernel version as argument.)
+
+-i)   Download, compile and install the kernel version passed as an argument.
+
+-b)   Create a .tar.gz archive of the kernel source directory. (Requires kernel version as argument.)
+
+-m)   Modify kernel config and optionally recompile and install kernel (Requires kernel version as argument.)
+
+-r)   Remove a kernel from system. (Requires kernel version as argument.)
+
+-a)   Restore a kernel that was previously archived. (Requires kernel version as argument.)
+
+-c)   View the kernel changelog for the version passed as an argument.
+
+-p)   Dump a directory containing the patches listed in patchfile given (used for testing).
+
+-u)   Update the current kernel to the latest stable on kernel.org.
+
+-n)   Create a new kernel. Select from a menu of the newest kernels on kernel.org
+
+-h)   Show this dialogue.
+EOF

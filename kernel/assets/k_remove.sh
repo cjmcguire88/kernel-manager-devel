@@ -51,22 +51,22 @@ fi
 echo -e "\n\033[1;33mThe following files and directories will be permanently deleted:\033[0m"
 for file in "$KERNEL_DIR"/*"${1}"*; do
     [[ -e $file ]] || continue
-    echo -e "$KERNEL_DIR/\033[0;31m$(echo "$file" | cut -d "/" -f3-)\033[0m"
+    echo -e "$KERNEL_DIR/\033[0;31m$(cut -d "/" -f3- <<< "$file" )\033[0m"
     rmf+=( "$file" )
 done
 for file in "$SRC_DIR"/*"${1}"*; do
     [[ -e $file ]] || continue
-    echo -e "$SRC_DIR/\033[0;31m$(echo "$file" | cut -d "/" -f4-)\033[0m"
+    echo -e "$SRC_DIR/\033[0;31m$(cut -d "/" -f4- <<< "$file")\033[0m"
     rmf+=( "$file" )
 done
 for file in /usr/lib/modules/*${1}*; do
     [[ -e $file ]] || continue
-    echo -e "/usr/lib/modules/\033[0;31m$(echo "$file" | cut -d "/" -f5-)\033[0m"
+    echo -e "/usr/lib/modules/\033[0;31m$(cut -d "/" -f5- <<< "$file")\033[0m"
     rmf+=( "$file" )
 done
 for file in /etc/mkinitcpio.d/*"${1}"*; do
     [[ -e $file ]] || continue
-    echo -e "/etc/mkinitcpio.d/\033[0;31m$(echo "$file" | cut -d "/" -f4-)\033[0m"
+    echo -e "/etc/mkinitcpio.d/\033[0;31m$(cut -d "/" -f4- <<< "$file")\033[0m"
     rmf+=( "$file" )
 done
 if [ ${#rmf[@]} -eq 0 ]; then

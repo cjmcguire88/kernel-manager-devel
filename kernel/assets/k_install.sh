@@ -13,8 +13,8 @@
 #% $SRC_DIR. There it will install modules and cp the bzImage
 #% to $KERNEL_DIR.  Then it will create the initramfs unless
 #% $INITRD is set to none in kernel.conf. If using mkinitcpio it
-#% file from existing files will create the .preset file in
-#% /etc/mkinitcpio.d/. If any part of the script fails it will
+#% will create the .preset file in /etc/mkinitcpio.d/ from
+#% existing files. If any part of the script fails it will
 #% cleanup the files it created.
 #%
 #% OPTIONS
