@@ -125,4 +125,4 @@ case ${REPLY:-Y} in
 esac
 echo -e "\033[1;37mCompiling ${1}\033[0m"
 make -j$(($(nproc) - $(nproc) / 4)) || exoe "Compilation failed"
-sudo -i "$k_path"/assets/k_install.sh "${MVERS}-${NAME}" "$BUILD_DIR"
+sudo "$k_path"/assets/k_install.sh "${MVERS}-${NAME}" "$BUILD_DIR"
