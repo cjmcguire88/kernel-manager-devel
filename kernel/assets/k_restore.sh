@@ -30,7 +30,6 @@ exoe() {
     echo -e "\033[1;31m${1}\033[0m" >&2
     exit 1
 }
-
 source /home/"$SUDO_USER"/.config/kernel/kernel.conf
 k_path="$(dirname $(realpath $0 ))"
 
