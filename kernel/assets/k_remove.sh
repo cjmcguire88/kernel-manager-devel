@@ -31,8 +31,11 @@ exoe() {
     echo -e "\033[1;31m${1}\033[0m" >&2
     exit 1
 }
-
-source /home/"$SUDO_USER"/.config/kernel/kernel.conf
+if [[ -f /home/$SUDO_USER/.config/kernel/kernel.conf ]]; then
+    source /home/"$SUDO_USER"/.config/kernel/kernel.conf
+else
+    exoe "Can't find configuration file"
+fi
 k_path="$(dirname $(realpath $0 ))"
 
 [[ "$1" =~ ^[0-9]+?\.{1}[0-9]+?\.{1}[0-9]+?-??[0-9a-zA-Z\-]*?$ ]] || exoe "Not a valid kernel version"

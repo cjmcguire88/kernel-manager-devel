@@ -42,11 +42,15 @@ exoe() {
     fi
     exit 1
 }
-
-source /home/"$SUDO_USER"/.config/kernel/kernel.conf
-
+if [[ -f /home/$SUDO_USER/.config/kernel/kernel.conf ]]; then
+    source /home/"$SUDO_USER"/.config/kernel/kernel.conf
+else
+    exoe "Can't find configuration file"
+fi
+BUILD_DIR="$2"
 echo -e "\033[1;37mInstalling linux-$1\033[0m"
-cp -rv "${2}"/linux-"${1}" "$SRC_DIR"/ || exoe "Cannot find ${2}/linux-${1}"
+[[ -d $SRC_DIR/linux-${1} ]] && rm -rf "$SRC_DIR"/linux-"$1"
+mv "$BUILD_DIR"/linux-"${1}" "$SRC_DIR"/ || exoe "Cannot find $BUILD_DIR/linux-${1}"
 cd "$SRC_DIR"/linux-"${1}" || exoe "Can't find $SRC_DIR/linux-$1"
 K_FILES+=( "$SRC_DIR/linux-${1}" )
 cp -v "$SRC_DIR"/linux-"${1}"/arch/x86_64/boot/bzImage "$KERNEL_DIR"/vmlinuz-linux-"${1}"
