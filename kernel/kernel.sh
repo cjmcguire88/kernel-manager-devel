@@ -49,7 +49,7 @@ main() {
                 sudo -i $k_path/assets/k_backup.sh "${OPTARG}"; exit
                 ;;
             m)
-                sudo -i $k_path/assets/k_modify.sh "${OPTARG}"; exit
+                source $k_path/assets/k_modify.sh "${OPTARG}"; exit
                 ;;
             r)
                 sudo -i $k_path/assets/k_remove.sh "${OPTARG}"; exit
