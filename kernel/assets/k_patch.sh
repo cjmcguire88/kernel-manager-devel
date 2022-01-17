@@ -37,7 +37,7 @@ case $DOWNLOADER in
         aria2c -i "$PATCH_DIR"/patchfile || exoe "No patchfile or patches directory"
         ;;
     3)
-        xargs -n 1 curl -O < "$PATCH_DIR"/patchfile
+        xargs -n 1 curl -O < "$PATCH_DIR"/patchfile || exoe "No patchfile or patches directory"
         ls
         ;;
 esac
