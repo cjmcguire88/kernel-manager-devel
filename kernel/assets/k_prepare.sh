@@ -123,6 +123,6 @@ case ${REPLY:-Y} in
         make "$KERNEL_MENU"
         ;;
 esac
-echo -e "\033[1;37mCompiling ${1}\033[0m"
+echo -e "\n\033[1;37mCompiling ${1}\033[0m"
 make -j$(($(nproc) - $(nproc) / 4)) || exoe "Compilation failed"
 sudo "$k_path"/assets/k_install.sh "${MVERS}-${NAME}" "$BUILD_DIR"
