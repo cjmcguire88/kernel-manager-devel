@@ -53,7 +53,7 @@ echo -e "\033[1;37mInstalling linux-$1\033[0m"
 mv "$BUILD_DIR"/linux-"${1}" "$SRC_DIR"/ || exoe "Cannot find $BUILD_DIR/linux-${1}"
 cd "$SRC_DIR"/linux-"${1}" || exoe "Can't find $SRC_DIR/linux-$1"
 K_FILES+=( "$SRC_DIR/linux-${1}" )
-cp -v "$SRC_DIR"/linux-"${1}"/arch/x86_64/boot/bzImage "$KERNEL_DIR"/vmlinuz-linux-"${1}"
+install -v "$SRC_DIR"/linux-"${1}"/arch/x86_64/boot/bzImage "$KERNEL_DIR"/vmlinuz-linux-"${1}"
 K_FILES+=( "$KERNEL_DIR/vmlinuz-linux-${1}" )
 echo -e "\n\033[1;37mInstalling modules\033[0m\n"
 make modules_install
