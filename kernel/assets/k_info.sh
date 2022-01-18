@@ -24,7 +24,7 @@
 # END_OF_HEADER
 #================================================================
 
-M_TIME=$(stat "$SRC_DIR"/linux-"$(uname -r)"/arch/x86_64/boot/bzImage | grep Modify: | awk -F " " '{print $2}')
+M_TIME=$(stat "$SRC_DIR"/linux-"$(uname -r)"/arch/x86_64/boot/bzImage| awk -F " " '/Modify:/ {print $2}')
 KERNELS=$(ls "$KERNEL_DIR"/vmlinuz-linux*)
 BACKUPS=$(ls "$SRC_DIR"/backups/*.tar.gz)
 UKI=$(ls "$KERNEL_DIR"/*.efi)
