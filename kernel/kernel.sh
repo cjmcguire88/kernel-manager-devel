@@ -15,7 +15,7 @@
 #% present.
 #%
 #% OPTIONS
-#% -[d i b m r a c p u n h] OPTARGS ...
+#% -[d] [i] [b] [m] [r] [a] [c] [p] [u] [n] [h] OPTARGS ...
 #% Receives flags and optional arguments depending on flag.
 #%
 #================================================================
