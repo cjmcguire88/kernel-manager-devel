@@ -46,16 +46,16 @@ main() {
                 source $k_path/assets/k_prepare.sh "${OPTARG}"; exit
                 ;;
             b)
-                sudo -i $k_path/assets/k_backup.sh "${OPTARG}"; exit
+                sudo $k_path/assets/k_backup.sh "${OPTARG}"; exit
                 ;;
             m)
                 source $k_path/assets/k_modify.sh "${OPTARG}"; exit
                 ;;
             r)
-                sudo -i $k_path/assets/k_remove.sh "${OPTARG}"; exit
+                sudo $k_path/assets/k_remove.sh "${OPTARG}"; exit
                 ;;
             a)
-                sudo -i $k_path/assets/k_restore.sh "${OPTARG}"; exit
+                sudo $k_path/assets/k_restore.sh "${OPTARG}"; exit
                 ;;
             c)
                 source $k_path/assets/k_cl.sh "${OPTARG}"; exit
