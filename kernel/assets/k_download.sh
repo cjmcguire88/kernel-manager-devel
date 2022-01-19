@@ -54,6 +54,10 @@ download() {
     esac
 }
 VER=${1}
+if [[ -e $BUILD_DIR/linux-$1.tar.xz ]]; then
+    echo "$BUILD_DIR/linux-${1}.tar.xz already exists"
+    return
+fi
 echo -e "\n\033[1;37mDownloading \033[0;32mlinux-${VER}\033[0m"
 MAJOR="$(echo ${VER} | cut -d. -f1)"
 if [[ ${MAJOR} -lt 3 ]]; then
