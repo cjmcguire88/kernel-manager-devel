@@ -34,7 +34,7 @@
 cd "$BUILD_DIR"/linux-"${1}" || exoe "${1} not found"
 read -n 1 -p $'\033[1;37mCreate backup of kernel source? \033[0m[y/N]: ' REPLY
 if [[ ${REPLY:-N} =~ ^[Yy]$ ]]; then
-    sudo -i "$k_path"/assets/k_backup.sh "${1}"
+    sudo "$k_path"/assets/k_backup.sh "${1}"
 fi
 oldSum=$(md5sum .config)
 make "$KERNEL_MENU"
