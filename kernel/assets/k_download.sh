@@ -53,13 +53,13 @@ download() {
             ;;
     esac
 }
-VER=${1}
+local VER=${1}
 if [[ -e $BUILD_DIR/linux-$1.tar.xz ]]; then
     echo "$BUILD_DIR/linux-${1}.tar.xz already exists"
     return
 fi
 echo -e "\n\033[1;37mDownloading \033[0;32mlinux-${VER}\033[0m"
-MAJOR="$(echo ${VER} | cut -d. -f1)"
+local MAJOR="$(echo ${VER} | cut -d. -f1)"
 if [[ ${MAJOR} -lt 3 ]]; then
     exoe "This script only supports kernel v3.x.x and above"
 fi
@@ -68,7 +68,7 @@ if [[ ! -d ${BUILD_DIR} ]]; then
     exoe "${BUILD_DIR} does not exist"
 fi
 
-TARGET="${BUILD_DIR}/linux-${VER}.tar.xz"
+local TARGET="${BUILD_DIR}/linux-${VER}.tar.xz"
 if [[ ! -x ${GPGBIN} ]]; then
     exoe "Could not find gpg in ${GPGBIN}"
 fi
@@ -76,11 +76,11 @@ if [[ ! -x ${GPGVBIN} ]]; then
     exoe "Could not find gpgv in ${GPGVBIN}"
 fi
 
-TMPDIR=$(mktemp -d ${BUILD_DIR}/linux-tarball-verify.XXXXXXXXX.untrusted)
+local TMPDIR=$(mktemp -d ${BUILD_DIR}/linux-tarball-verify.XXXXXXXXX.untrusted)
 echo -e "\033[1;37mUsing TMPDIR=\033[0;32m${TMPDIR}\033[0m"
 if [[ -z ${USEKEYRING} ]]; then
     if [[ -z ${GNUPGHOME} ]]; then
-        GNUPGHOME="${TMPDIR}/gnupg"
+        local GNUPGHOME="${TMPDIR}/gnupg"
     elif [[ ! -d ${GNUPGHOME} ]]; then
         echo "GNUPGHOME directory ${GNUPGHOME} does not exist"
         echo -n "Create it? [Y/n]"
@@ -100,40 +100,40 @@ if [[ -z ${USEKEYRING} ]]; then
         rm -rf ${TMPDIR}
         exoe "Something went wrong fetching keys"
     fi
-    USEKEYRING=${TMPDIR}/keyring.gpg
+    local USEKEYRING=${TMPDIR}/keyring.gpg
     ${GPGBIN} --batch --export ${DEVKEYS} ${SHAKEYS} > ${USEKEYRING}
 fi
-SHAKEYRING=${TMPDIR}/shakeyring.gpg
+local SHAKEYRING=${TMPDIR}/shakeyring.gpg
 ${GPGBIN} --batch \
     --no-default-keyring --keyring ${USEKEYRING} \
     --export ${SHAKEYS} > ${SHAKEYRING}
-DEVKEYRING=${TMPDIR}/devkeyring.gpg
+local DEVKEYRING=${TMPDIR}/devkeyring.gpg
 ${GPGBIN} --batch \
     --no-default-keyring --keyring ${USEKEYRING} \
     --export ${DEVKEYS} > ${DEVKEYRING}
 
-TXZ="$PROTO://cdn.kernel.org/pub/linux/kernel/v${MAJOR}.x/linux-${VER}.tar.xz"
-SIG="$PROTO://cdn.kernel.org/pub/linux/kernel/v${MAJOR}.x/linux-${VER}.tar.sign"
-SHA="$PROTO://www.kernel.org/pub/linux/kernel/v${MAJOR}.x/sha256sums.asc"
+local TXZ="$PROTO://cdn.kernel.org/pub/linux/kernel/v${MAJOR}.x/linux-${VER}.tar.xz"
+local SIG="$PROTO://cdn.kernel.org/pub/linux/kernel/v${MAJOR}.x/linux-${VER}.tar.sign"
+local SHA="$PROTO://www.kernel.org/pub/linux/kernel/v${MAJOR}.x/sha256sums.asc"
 
-SHAFILE=${TMPDIR}/sha256sums.asc
+local SHAFILE=${TMPDIR}/sha256sums.asc
 echo -e "\n\033[1;37mDownloading the checksums file for \033[0;32mlinux-${VER}\033[0m"
 download "$SHA" "$TMPDIR" "$SHAFILE" "q" || { rm -rf ${TMPDIR}; exoe "Failed to download checksums file"; }
 echo -e "\n\033[1;37mVerifying the checksums file\033[0m"
-COUNT=$(${GPGVBIN} --keyring=${SHAKEYRING} --status-fd=1 ${SHAFILE} \
+local COUNT=$(${GPGVBIN} --keyring=${SHAKEYRING} --status-fd=1 ${SHAFILE} \
         | grep -c -E '^\[GNUPG:\] (GOODSIG|VALIDSIG)')
 if [[ ${COUNT} -lt 2 ]]; then
     rm -rf ${TMPDIR}
     exoe "FAILED to verify the sha256sums.asc file."
 fi
-SHACHECK=${TMPDIR}/sha256sums.txt
+local SHACHECK=${TMPDIR}/sha256sums.txt
 grep "linux-${VER}.tar.xz" ${SHAFILE} > ${SHACHECK}
 
-SIGFILE=${TMPDIR}/linux-${VER}.tar.asc
+local SIGFILE=${TMPDIR}/linux-${VER}.tar.asc
 echo -e "\n\033[1;37mDownloading the signature file for \033[0;32mlinux-${VER}\033[0m"
 download "$SIG" "$TMPDIR" "$SIGFILE" "q" || { rm -rf ${TMPDIR}; exoe "Failed to download signature file"; }
 [[ -e ${TMPDIR}/linux-${VER}.tar.sign ]] && mv "${TMPDIR}/linux-${VER}.tar.sign" "${SIGFILE}"
-TXZFILE=${TMPDIR}/linux-${VER}.tar.xz
+local TXZFILE=${TMPDIR}/linux-${VER}.tar.xz
 echo -e "\n\033[1;37mDownloading the XZ tarball for \033[0;32mlinux-${VER}\033[0m"
 download "$TXZ" "$TMPDIR" "$TXZFILE" || { rm -rf ${TMPDIR}; exoe "Failed to download tarball"; }
 pushd ${TMPDIR} >/dev/null
@@ -145,7 +145,7 @@ if ! ${SHA256SUMBIN} -c ${SHACHECK}; then
 fi
 popd >/dev/null
 echo -e "\n\033[1;37mVerifying developer signature on the tarball\033[0m"
-COUNT=$(${XZBIN} -cd ${TXZFILE} \
+local COUNT=$(${XZBIN} -cd ${TXZFILE} \
         | ${GPGVBIN} --keyring=${DEVKEYRING} --status-fd=1 ${SIGFILE} - \
         | grep -c -E '^\[GNUPG:\] (GOODSIG|VALIDSIG)')
 if [[ ${COUNT} -lt 2 ]]; then

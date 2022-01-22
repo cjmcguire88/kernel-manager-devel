@@ -34,13 +34,13 @@
 # END_OF_HEADER
 #================================================================
 
-VERS="$1"
-MAJ_VER="${1:0:1}"
+local VERS="$1"
+local MAJ_VER="${1:0:1}"
 
 if [[ $(awk -F "." '{print NF}' <<< "$VERS") -lt 3 ]]; then
-    MVERS=${VERS}.0
+    local MVERS=${VERS}.0
 else
-    MVERS=${VERS}
+    local MVERS=${VERS}
 fi
 [[ "$VERS" =~ ^[0-9]+\.[0-9]+\.?[0-9]*$ ]] || exoe "Not a valid kernel version"
 cd "$BUILD_DIR" || exoe "$BUILD_DIR not found"
@@ -97,9 +97,9 @@ case ${REPLY:-Y} in
         read -n 1 -p $'\n\033[1;37mOpen kernel configuration menu? \033[0m[y/N]: ' REPLY
         echo
         if [[ $REPLY =~ ^[Yy]$ ]]; then
-            oldSum=$(md5sum .config)
+            local oldSum=$(md5sum .config)
             make "$KERNEL_MENU"
-            newSum=$(md5sum .config)
+            local newSum=$(md5sum .config)
             if [[ $oldSum != "$newSum" ]]; then
                 [[ ! -d "$HOME"/.config/kernel/configs/"$(date +"%Y-%m-%d")" ]] && mkdir -p "$HOME"/.config/kernel/configs/"$(date +"%Y-%m-%d")"
                 diff .config.old .config > "$HOME"/.config/kernel/configs/"$(date +"%Y-%m-%d")"/"${1}-$(date | awk '{print $4}')".diff

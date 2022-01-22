@@ -42,21 +42,21 @@ isUpdate() {
 echo -e "\033[1;37mGetting latest kernel version...\033[0m"
 case $DOWNLOADER in
     1)
-        VERS=$(wget -P "$RUN_DIR" "$PROTO"://www.kernel.org/finger_banner > /dev/null 2>&1 && awk '{print $NF}' "$RUN_DIR"/finger_banner | head -n 1 && rm -f "$RUN_DIR"/finger_banner*)
+        local VERS=$(wget -P "$RUN_DIR" "$PROTO"://www.kernel.org/finger_banner > /dev/null 2>&1 && awk '{print $NF}' "$RUN_DIR"/finger_banner | head -n 1 && rm -f "$RUN_DIR"/finger_banner*)
         ;;
     2)
-        VERS=$(aria2c -q -x 3 -m 3 -d "$RUN_DIR" "$PROTO"://www.kernel.org/finger_banner > /dev/null 2>&1 && awk '{print $NF}' "$RUN_DIR"/finger_banner | head -n 1 && rm -f "$RUN_DIR"/finger_banner*)
+        local VERS=$(aria2c -q -x 3 -m 3 -d "$RUN_DIR" "$PROTO"://www.kernel.org/finger_banner > /dev/null 2>&1 && awk '{print $NF}' "$RUN_DIR"/finger_banner | head -n 1 && rm -f "$RUN_DIR"/finger_banner*)
         ;;
     3)
-        VERS=$(curl -o "$RUN_DIR"/finger_banner "$PROTO"://www.kernel.org/finger_banner > /dev/null 2>&1 && awk '{print $NF}' "$RUN_DIR"/finger_banner | head -n 1 && rm -f "$RUN_DIR"/finger_banner*)
+        local VERS=$(curl -o "$RUN_DIR"/finger_banner "$PROTO"://www.kernel.org/finger_banner > /dev/null 2>&1 && awk '{print $NF}' "$RUN_DIR"/finger_banner | head -n 1 && rm -f "$RUN_DIR"/finger_banner*)
         ;;
 esac
-CURRENT_VERS=$(uname -r | awk -F "-" '{print $1}')
+local CURRENT_VERS=$(uname -r | awk -F "-" '{print $1}')
 
 if [[ $(awk -F "." '{print NF}' <<< "$VERS") -lt 3 ]]; then
-    MVERS=${VERS}.0
+    local MVERS=${VERS}.0
 else
-    MVERS=${VERS}
+    local MVERS=${VERS}
 fi
 if isUpdate "$MVERS" "$CURRENT_VERS"; then
     echo -e "\033[1;32m$CURRENT_VERS\033[0m -> \033[1;32m$VERS\n"

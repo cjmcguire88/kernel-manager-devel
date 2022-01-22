@@ -37,13 +37,13 @@ case $DOWNLOADER in
         curl -s -o "$RUN_DIR"/finger_banner "$PROTO"://www.kernel.org/finger_banner
         ;;
 esac
-IFS=$'\n'
-KERNEL=($(awk '{print $3,$NF}' "$RUN_DIR"/finger_banner))
+local IFS=$'\n'
+local KERNEL=($(awk '{print $3,$NF}' "$RUN_DIR"/finger_banner))
 rm "$RUN_DIR"/finger_banner*
-PS3=$'\033[1;32mSelect kernel version: \033[0m'
+local PS3=$'\033[1;32mSelect kernel version: \033[0m'
 echo -e "\n\033[1;37mNewest versions from \033[1;34mwww.kernel.org\033[0m\n"
 select KERN in ${KERNEL[*]}; do
     unset IFS
-    VERS=$(awk '{print $2}' <<< "$KERN")
+    local VERS=$(awk '{print $2}' <<< "$KERN")
     source "$k_path"/assets/k_prepare.sh "$VERS" "$BUILD_DIR" && exit 0
 done

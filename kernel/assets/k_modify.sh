@@ -36,9 +36,9 @@ read -n 1 -p $'\033[1;37mCreate backup of kernel source? \033[0m[y/N]: ' REPLY
 if [[ ${REPLY:-N} =~ ^[Yy]$ ]]; then
     sudo "$k_path"/assets/k_backup.sh "${1}"
 fi
-oldSum=$(md5sum .config)
+local oldSum=$(md5sum .config)
 make "$KERNEL_MENU"
-newSum=$(md5sum .config)
+local newSum=$(md5sum .config)
 if [[ $oldSum != "$newSum" ]]; then
     [[ ! -d "$HOME"/.config/kernel/configs/"$(date +"%Y-%m-%d")" ]] && mkdir -p "$HOME"/.config/kernel/configs/"$(date +"%Y-%m-%d")"
     diff .config.old .config > "$HOME"/.config/kernel/configs/"$(date +"%Y-%m-%d")"/"${1}-$(date | awk '{print $4}')".diff

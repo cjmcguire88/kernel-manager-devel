@@ -33,7 +33,7 @@ exoe() {
     echo -e "\033[1;31m${1}\033[0m" >&2
     exit 1
 }
-k_path="$(dirname $(realpath $0 ))"
+export k_path="$(dirname $(realpath $0 ))"
 # This is the "main portal" to the above functions.
 main() {
     source $HOME/.config/kernel/kernel.conf
